@@ -161,73 +161,111 @@
 
 /* ---------- OH MY DEV canvas system ---------- */
 
-.bg-sky {
-  background-image: linear-gradient(
-    180deg,
-    #79b8e8 0%,
-    #a7d3ef 22%,
-    #c3e2f5 48%,
-    #dbeefa 72%,
-    #eef7fc 100%
-  );
+/*
+ * The sky is painted ONCE on the body and stays fixed while content scrolls,
+ * so there is a single continuous atmosphere behind the whole page instead of
+ * a gradient restarting at every section boundary. Two soft radial washes (a
+ * warm highlight top-right, a cool pool bottom-left) sit over the base ramp to
+ * keep the large flat area from banding.
+ */
+body {
+  background-image:
+    radial-gradient(
+      130% 95% at 82% -18%,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0) 40%
+    ),
+    radial-gradient(
+      120% 80% at 10% 118%,
+      rgba(196, 230, 255, 0.75) 0%,
+      rgba(196, 230, 255, 0) 52%
+    ),
+    linear-gradient(#3e97e2 0%, #5eaeea 40%, #86c4ef 76%, #acd8f4 100%);
+  background-attachment: fixed;
+}
+
+/* Fixed cloud stage. Sits behind every section; nothing here is interactive. */
+.sky-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sky-layer .cloud {
+  position: absolute;
+  left: 0;
+  display: block;
+  /* Blur keeps the silhouette from reading as a hard cut-out. */
+  filter: blur(1.5px) drop-shadow(0 12px 18px rgba(90, 140, 190, 0.14));
+  animation-name: drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
 }
 
 /*
- * Clouds are a repeating vertical tile (not sized to each section) so they
- * recur at a consistent rhythm down the whole page, regardless of how tall
- * an individual section is. Each cloud is two overlapping soft ellipses so
- * it reads as a fluffy puff instead of a flat blob.
+ * Clouds cross the viewport well beyond both edges so they enter and exit
+ * off-screen rather than popping in at x=0.
  */
-.bg-clouds {
-  background-image:
-    linear-gradient(
-      180deg,
-      #79b8e8 0%,
-      #a7d3ef 22%,
-      #c3e2f5 48%,
-      #dbeefa 72%,
-      #eef7fc 100%
-    ),
-    radial-gradient(ellipse 260px 110px at center, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6) 55%, transparent 78%),
-    radial-gradient(ellipse 170px 80px at center, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6) 55%, transparent 78%),
-    radial-gradient(ellipse 220px 95px at center, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.5) 55%, transparent 78%),
-    radial-gradient(ellipse 140px 65px at center, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.5) 55%, transparent 78%),
-    radial-gradient(ellipse 300px 130px at center, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4) 55%, transparent 78%),
-    radial-gradient(ellipse 190px 85px at center, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4) 55%, transparent 78%);
-  background-repeat: no-repeat, repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, repeat-y;
-  background-size:
-    100% 100%,
-    1300px 640px,
-    1300px 640px,
-    1300px 640px,
-    1300px 640px,
-    1300px 640px,
-    1300px 640px;
-  background-position:
-    0 0,
-    12% 90px,
-    16% 150px,
-    82% 260px,
-    86% 310px,
-    46% 460px,
-    50% 500px;
+@keyframes drift {
+  from {
+    transform: translateX(-42vw);
+  }
+  to {
+    transform: translateX(132vw);
+  }
 }
 
+/*
+ * Fine film grain over the whole page. Low opacity on purpose — it should
+ * never be visible as texture, only felt as the thing that stops large flat
+ * gradients from looking synthetic.
+ */
+.grain-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Content sits above the sky and grain. */
+.canvas-section {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-layer .cloud {
+    animation: none;
+  }
+}
+
+/*
+ * Halftone display type: solid brand-orange fill with a dark dot screen laid
+ * over it. The earlier version stacked two *dotted* layers, which left
+ * transparent gaps between the dots — against the sky that read as washed-out
+ * grey rather than orange. Keeping the fill solid and screening only the dots
+ * on top is what preserves the colour at any size.
+ */
 .halftone-text {
-  background-image: radial-gradient(
-      circle,
-      var(--brand) 1.1px,
-      transparent 1.2px
-    ),
-    radial-gradient(circle, var(--ink) 1.1px, transparent 1.2px);
-  background-size: 6px 6px, 6px 6px;
+  background-image:
+    radial-gradient(circle, rgba(20, 32, 43, 0.85) 1.4px, transparent 1.5px),
+    linear-gradient(var(--brand), var(--brand));
+  background-size:
+    5px 5px,
+    100% 100%;
   background-position:
     0 0,
-    3px 3px;
+    0 0;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(20, 32, 43, 0.15);
+  -webkit-text-stroke: 1.5px rgba(20, 32, 43, 0.28);
+  paint-order: stroke fill;
 }
 
 .frame-shadow {

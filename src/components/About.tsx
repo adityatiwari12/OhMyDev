@@ -2,7 +2,6 @@ import { Star } from "lucide-react";
 import { FrameTag } from "./FigmaChrome";
 import { InitialAvatar } from "./icons";
 import { TESTIMONIALS } from "@/data/content";
-import { Clouds } from "./Clouds";
 
 const METRICS = [
   { value: "15+", label: "PRODUCTS SHIPPED" },
@@ -21,8 +20,7 @@ const CAPABILITIES = [
 
 export function About() {
   return (
-    <section id="about" className="bg-sky relative overflow-hidden">
-      <Clouds />
+    <section id="about" className="canvas-section">
       <div className="relative mx-auto max-w-[1400px] px-4 pt-24 pb-10 sm:px-6">
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="reveal-up rounded-2xl border border-ink/10 bg-ink text-white shadow-xl">

@@ -1,5 +1,4 @@
 import { InitialAvatar } from "./icons";
-import { Clouds } from "./Clouds";
 
 interface Msg {
   step: string;
@@ -85,8 +84,7 @@ function withDividers(messages: Msg[]) {
 export function Process() {
   const annotated = withDividers(MESSAGES);
   return (
-    <section id="process" className="bg-sky relative overflow-hidden py-24">
-      <Clouds />
+    <section id="process" className="canvas-section py-24">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
         <span className="font-hand text-2xl text-brand">how it works</span>
         <h2 className="font-heading mt-2 text-[40px] leading-[0.98] font-bold tracking-tight text-ink uppercase sm:text-[56px] md:text-[68px]">

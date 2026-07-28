@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { SERVICES } from "@/data/content";
 import type { ServiceItem } from "@/types/content";
-import { Clouds } from "./Clouds";
 
 function ChromeBar({ label }: { label: string }) {
   return (
@@ -576,18 +575,15 @@ function ScrollPan() {
 
 export function Services() {
   return (
-    <section id="services" className="bg-sky relative py-24 md:py-0">
-      <div className="relative overflow-hidden">
-        <Clouds specs={[{ top: "10%", left: "4%", scale: 0.9 }, { top: "55%", right: "6%", scale: 0.7 }]} />
-        <div className="mx-auto max-w-3xl px-4 pt-0 pb-12 text-center sm:px-6 md:pt-24">
-          <h2 className="font-heading text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[48px]">
-            What we make
-          </h2>
-          <p className="mt-3 text-ink-soft">
-            Six services, one engineer. Keep scrolling — the cards pan
-            themselves.
-          </p>
-        </div>
+    <section id="services" className="canvas-section py-24 md:py-0">
+      <div className="mx-auto max-w-3xl px-4 pt-0 pb-12 text-center sm:px-6 md:pt-24">
+        <h2 className="font-heading text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[48px]">
+          What we make
+        </h2>
+        <p className="mt-3 text-ink-soft">
+          Six services, one engineer. Keep scrolling — the cards pan
+          themselves.
+        </p>
       </div>
 
       <ScrollPan />

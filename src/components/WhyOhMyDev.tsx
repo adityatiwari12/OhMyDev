@@ -1,11 +1,9 @@
 import { Check, X } from "lucide-react";
 import { COMPARISON } from "@/data/content";
-import { Clouds } from "./Clouds";
 
 export function WhyOhMyDev() {
   return (
-    <section className="bg-sky relative overflow-hidden py-24">
-      <Clouds />
+    <section className="canvas-section py-24">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
         <span className="font-hand text-2xl text-brand">why teams switch</span>
         <h2 className="font-heading mt-2 text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[52px]">

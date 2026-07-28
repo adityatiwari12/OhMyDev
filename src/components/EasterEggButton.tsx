@@ -23,7 +23,7 @@ export function EasterEggButton() {
   }
 
   return (
-    <section className="bg-sky relative overflow-hidden py-20">
+    <section className="canvas-section py-20">
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 px-4 text-center sm:px-6">
         <h2 className="font-heading max-w-md text-2xl leading-tight font-extrabold tracking-tight text-ink uppercase sm:text-3xl">
           This button does absolutely nothing

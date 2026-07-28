@@ -1,3 +1,4 @@
+import { SkyLayer } from "@/components/SkyLayer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -16,8 +17,9 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <SkyLayer />
       <Header />
-      <main className="flex-1">
+      <main className="relative z-2 flex-1">
         <Hero />
         <About />
         <Process />

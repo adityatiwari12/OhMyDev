@@ -3,14 +3,12 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { FAQ_ITEMS } from "@/data/content";
-import { Clouds } from "./Clouds";
 
 export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-sky relative overflow-hidden py-24">
-      <Clouds />
+    <section className="canvas-section py-24">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
         <h2 className="font-heading text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[48px]">
           The nosy section

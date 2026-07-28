@@ -1,11 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
 import { WORK_ITEMS } from "@/data/content";
-import { Clouds } from "./Clouds";
 
 export function SelectedWork() {
   return (
-    <section id="work" className="bg-sky relative overflow-hidden py-24">
-      <Clouds />
+    <section id="work" className="canvas-section py-24">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
         <h2 className="font-heading text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[48px]">
           Featured works

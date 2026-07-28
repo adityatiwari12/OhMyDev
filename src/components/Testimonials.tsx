@@ -1,12 +1,10 @@
 import { Star } from "lucide-react";
 import { InitialAvatar } from "./icons";
 import { TESTIMONIALS } from "@/data/content";
-import { Clouds } from "./Clouds";
 
 export function Testimonials() {
   return (
-    <section className="bg-sky relative overflow-hidden py-24">
-      <Clouds />
+    <section className="canvas-section py-24">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
         <span className="font-hand text-2xl text-brand">kind words</span>
         <h2 className="font-heading mt-2 text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[52px]">

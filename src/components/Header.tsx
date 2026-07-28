@@ -28,7 +28,7 @@ export function Header() {
   return (
     <div
       ref={stripRef}
-      className="fixed inset-x-0 top-0 z-50 h-11 border-b border-ink/10 bg-white/70 backdrop-blur-md"
+      className="fixed inset-x-0 top-0 z-60 h-[30px] border-b border-ink/10 bg-white/[0.82] backdrop-blur-md"
     >
       <div className="relative flex h-full items-center px-3 sm:px-4">
         <a
