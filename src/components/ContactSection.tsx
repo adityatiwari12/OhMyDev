@@ -2,6 +2,7 @@ import { CalendarDays, Mail, ArrowUpRight } from "lucide-react";
 import { FrameTag } from "./FigmaChrome";
 import { CalendlyButton } from "./CalendlyButton";
 import { LinkedinIcon } from "./icons";
+import { Clouds } from "./Clouds";
 
 const cardClass =
   "group frame-shadow flex flex-col items-start gap-4 rounded-2xl border border-ink/10 bg-white p-6 text-left transition-transform hover:-translate-y-1";
@@ -10,7 +11,8 @@ const iconWrapClass =
 
 export function ContactSection() {
   return (
-    <section id="contact" className="bg-sky bg-clouds relative overflow-hidden py-24">
+    <section id="contact" className="bg-sky relative overflow-hidden py-24">
+      <Clouds />
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
         <FrameTag label="contact.frame" className="mx-auto" />
         <h2 className="font-heading mt-4 text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[48px]">

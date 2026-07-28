@@ -1,5 +1,6 @@
 import { Mail, ArrowRight } from "lucide-react";
 import { SelectionFrame } from "./FigmaChrome";
+import { Clouds } from "./Clouds";
 
 const NAV = [
   { label: "Home", href: "#top" },
@@ -13,8 +14,17 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="bg-sky bg-clouds relative overflow-hidden pt-11"
+      className="bg-sky relative overflow-hidden pt-11"
     >
+      <Clouds
+        specs={[
+          { top: "24%", left: "1%", scale: 1.1 },
+          { top: "6%", right: "16%", scale: 0.7 },
+          { top: "42%", right: "3%", scale: 0.9 },
+          { top: "56%", left: "8%", scale: 0.6 },
+          { top: "78%", right: "10%", scale: 1.05 },
+        ]}
+      />
       <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 pt-6 sm:px-6">
         <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-mono text-xs font-bold text-ink shadow-sm">
           <span className="relative flex size-2">

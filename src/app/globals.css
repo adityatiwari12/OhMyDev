@@ -172,6 +172,12 @@
   );
 }
 
+/*
+ * Clouds are a repeating vertical tile (not sized to each section) so they
+ * recur at a consistent rhythm down the whole page, regardless of how tall
+ * an individual section is. Each cloud is two overlapping soft ellipses so
+ * it reads as a fluffy puff instead of a flat blob.
+ */
 .bg-clouds {
   background-image:
     linear-gradient(
@@ -182,12 +188,29 @@
       #dbeefa 72%,
       #eef7fc 100%
     ),
-    radial-gradient(ellipse 140px 60px at 8% 12%, rgba(255, 255, 255, 0.85), transparent 70%),
-    radial-gradient(ellipse 90px 40px at 92% 8%, rgba(255, 255, 255, 0.7), transparent 70%),
-    radial-gradient(ellipse 160px 70px at 15% 55%, rgba(255, 255, 255, 0.55), transparent 70%),
-    radial-gradient(ellipse 120px 55px at 88% 62%, rgba(255, 255, 255, 0.6), transparent 70%),
-    radial-gradient(ellipse 100px 45px at 50% 90%, rgba(255, 255, 255, 0.5), transparent 70%);
-  background-repeat: no-repeat;
+    radial-gradient(ellipse 260px 110px at center, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6) 55%, transparent 78%),
+    radial-gradient(ellipse 170px 80px at center, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6) 55%, transparent 78%),
+    radial-gradient(ellipse 220px 95px at center, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.5) 55%, transparent 78%),
+    radial-gradient(ellipse 140px 65px at center, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.5) 55%, transparent 78%),
+    radial-gradient(ellipse 300px 130px at center, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4) 55%, transparent 78%),
+    radial-gradient(ellipse 190px 85px at center, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4) 55%, transparent 78%);
+  background-repeat: no-repeat, repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, repeat-y;
+  background-size:
+    100% 100%,
+    1300px 640px,
+    1300px 640px,
+    1300px 640px,
+    1300px 640px,
+    1300px 640px,
+    1300px 640px;
+  background-position:
+    0 0,
+    12% 90px,
+    16% 150px,
+    82% 260px,
+    86% 310px,
+    46% 460px,
+    50% 500px;
 }
 
 .halftone-text {
@@ -284,6 +307,15 @@
     transparent 1px,
     transparent 20px
   );
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(600%);
+  }
 }
 
 .no-scrollbar::-webkit-scrollbar {

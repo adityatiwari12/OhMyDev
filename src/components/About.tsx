@@ -1,4 +1,8 @@
+import { Star } from "lucide-react";
 import { FrameTag } from "./FigmaChrome";
+import { InitialAvatar } from "./icons";
+import { TESTIMONIALS } from "@/data/content";
+import { Clouds } from "./Clouds";
 
 const METRICS = [
   { value: "15+", label: "PRODUCTS SHIPPED" },
@@ -17,7 +21,8 @@ const CAPABILITIES = [
 
 export function About() {
   return (
-    <section id="about" className="bg-sky bg-clouds relative overflow-hidden">
+    <section id="about" className="bg-sky relative overflow-hidden">
+      <Clouds />
       <div className="relative mx-auto max-w-[1400px] px-4 pt-24 pb-10 sm:px-6">
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="reveal-up rounded-2xl border border-ink/10 bg-ink text-white shadow-xl">
@@ -26,7 +31,7 @@ export function About() {
               <span>hero.frame</span>
             </div>
             <div className="px-5 py-6">
-              <p className="font-heading text-2xl leading-none font-bold uppercase">
+              <p className="font-heading text-2xl leading-none font-bold">
                 Ship
                 <br />
                 <span className="text-brand">faster.</span>
@@ -83,16 +88,27 @@ export function About() {
             className="reveal-up rounded-2xl border border-ink/10 bg-white p-5 shadow-xl"
             style={{ animationDelay: "0.2s" }}
           >
-            <FrameTag label="craft" />
-            <p className="font-heading mt-3 text-3xl font-extrabold text-ink">
-              42
+            <div className="flex items-center justify-between">
+              <FrameTag label="review" />
+              <div className="flex gap-0.5 text-brand">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="size-3 fill-brand" />
+                ))}
+              </div>
+            </div>
+            <p className="mt-3 text-sm leading-snug text-ink">
+              &ldquo;{TESTIMONIALS[2].quote.split(".")[0]}.&rdquo;
             </p>
-            <p className="text-sm font-semibold text-ink-soft">
-              commits pushed this week 💻
-            </p>
-            <p className="mt-3 font-mono text-[10px] font-bold tracking-wide text-ink-faint uppercase">
-              designed &amp; shipped live
-            </p>
+            <div className="mt-3 flex items-center gap-2">
+              <InitialAvatar
+                name={TESTIMONIALS[2].name}
+                className="size-6 text-[10px]"
+                bg="var(--tool)"
+              />
+              <span className="font-mono text-[10px] font-bold tracking-wide text-ink-faint uppercase">
+                {TESTIMONIALS[2].name} · {TESTIMONIALS[2].role.split(",")[0]}
+              </span>
+            </div>
           </div>
         </div>
       </div>
