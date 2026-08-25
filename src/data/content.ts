@@ -129,22 +129,14 @@ export const WORK_ITEMS: WorkItem[] = [
   },
   {
     index: "/02",
-    title: "Saarthi",
-    description:
-      "AI-powered emergency healthcare ecosystem linking homes, ambulances and hospitals.",
-    tags: ["HEALTHTECH", "IOT"],
-    year: "2026",
-  },
-  {
-    index: "/03",
     title: "Astitava",
     description:
-      "AI forest rights decision-support system built for the Ministry of Tribal Affairs.",
+      "Technical contribution to the FRA (Forest Rights Act) decision-support platform, built for the Ministry of Tribal Affairs — AI-assisted claim verification over satellite and GIS data.",
     tags: ["GOVTECH", "GIS"],
     year: "2025",
   },
   {
-    index: "/04",
+    index: "/03",
     title: "Dharohar",
     description:
       "Digital heritage preservation platform built for AWS AI For Bharat.",
@@ -152,7 +144,7 @@ export const WORK_ITEMS: WorkItem[] = [
     year: "2025",
   },
   {
-    index: "/05",
+    index: "/04",
     title: "Onestore Mysha",
     description:
       "End-to-end fashion commerce platform with inventory, payments and admin dashboard.",
@@ -160,7 +152,7 @@ export const WORK_ITEMS: WorkItem[] = [
     year: "2025",
   },
   {
-    index: "/06",
+    index: "/05",
     title: "Surprizo",
     description:
       "Personalised gifting platform for managing products, customers and online orders.",

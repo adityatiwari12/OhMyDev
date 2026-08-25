@@ -580,9 +580,12 @@ export function Services() {
         <h2 className="font-heading text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[48px]">
           What we make
         </h2>
-        <p className="mt-3 text-ink-soft">
+        <p className="mt-3 hidden text-ink-soft md:block">
           Six services, one engineer. Keep scrolling — the cards pan
           themselves.
+        </p>
+        <p className="mt-3 text-ink-soft md:hidden">
+          Six services, one engineer. Swipe to see them all.
         </p>
       </div>
 
@@ -595,6 +598,11 @@ export function Services() {
           </div>
         ))}
         <div className="w-px shrink-0" aria-hidden />
+      </div>
+      <div className="flex justify-center gap-1.5 pb-2 md:hidden" aria-hidden>
+        {SERVICES.map((s) => (
+          <span key={s.slug} className="size-1.5 rounded-full bg-ink/15" />
+        ))}
       </div>
     </section>
   );

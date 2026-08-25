@@ -112,7 +112,7 @@ export function Process() {
           </div>
         </div>
 
-        <div className="max-h-[520px] overflow-y-auto px-5 py-6">
+        <div className="px-5 py-6 sm:max-h-[520px] sm:overflow-y-auto">
           {annotated.map((m, i) => {
             const { showDivider } = m;
             return (

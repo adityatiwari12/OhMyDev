@@ -1,4 +1,7 @@
-import { Mail, ArrowRight } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { Mail, ArrowRight, Menu, X } from "lucide-react";
 import { SelectionFrame } from "./FigmaChrome";
 
 const NAV = [
@@ -10,6 +13,8 @@ const NAV = [
 ];
 
 export function Hero() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <section id="top" className="canvas-section pt-[82px]">
       <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 pt-6 sm:px-6">
@@ -46,7 +51,41 @@ export function Hero() {
           <Mail className="size-3.5 text-brand" />
           hello@ohmydev.dev
         </a>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="order-4 flex size-9 shrink-0 items-center justify-center rounded-full bg-white text-ink shadow-sm md:hidden"
+        >
+          {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+        </button>
       </div>
+
+      {menuOpen && (
+        <div className="mx-auto mt-3 max-w-[1400px] px-4 sm:px-6 md:hidden">
+          <nav className="flex flex-col gap-1 rounded-2xl bg-white p-2 shadow-sm">
+            {NAV.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-xl px-4 py-3 text-sm font-semibold text-ink transition-colors hover:bg-soft hover:text-brand"
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              className="rounded-xl bg-ink px-4 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-ink/90"
+            >
+              Contact
+            </a>
+          </nav>
+        </div>
+      )}
 
       <div className="relative mx-auto flex max-w-[1000px] flex-col items-center px-4 pt-16 pb-28 text-center sm:pt-20">
         <SelectionFrame

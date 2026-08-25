@@ -2,8 +2,7 @@
 
 import { useEffect, type ReactNode } from "react";
 
-const CALENDLY_URL =
-  "https://calendly.com/tiwariaditya005/software-consulting-meet-ohhmydev";
+const CALENDLY_URL = "https://calendly.com/tiwariaditya005/30min";
 
 declare global {
   interface Window {

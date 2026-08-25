@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Logomark } from "./icons";
 import { useISTClock } from "@/hooks/use-ist-clock";
 import { useScrollProgress } from "@/hooks/use-scroll-progress";
@@ -31,13 +32,13 @@ export function Header() {
       className="fixed inset-x-0 top-0 z-60 h-[30px] border-b border-ink/10 bg-white/[0.82] backdrop-blur-md"
     >
       <div className="relative flex h-full items-center px-3 sm:px-4">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="flex shrink-0 items-center gap-1.5 font-mono text-[11px] font-bold tracking-tight text-ink sm:text-xs"
         >
           <Logomark className="size-5" />
           <span className="hidden sm:inline">OH MY DEV</span>
-        </a>
+        </Link>
 
         <span className="ml-2 shrink-0 rounded bg-brand px-1.5 py-0.5 font-mono text-[10px] font-bold text-white">
           {progress}%

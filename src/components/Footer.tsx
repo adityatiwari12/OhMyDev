@@ -1,32 +1,45 @@
 "use client";
 
 import { ArrowUp, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useISTClock } from "@/hooks/use-ist-clock";
 
 const COLUMNS = [
   {
     heading: "STUDIO",
     links: [
-      { label: "About", href: "#about" },
-      { label: "Services", href: "#services" },
-      { label: "Work", href: "#work" },
-      { label: "FAQ", href: "#faq" },
+      { label: "About", href: "/about", external: false },
+      { label: "Services", href: "/#services", external: false },
+      { label: "Work", href: "/#work", external: false },
+      { label: "FAQ", href: "/#faq", external: false },
     ],
   },
   {
     heading: "COMPANY",
     links: [
-      { label: "Contact", href: "#contact" },
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
+      { label: "Contact", href: "/#contact", external: false },
+      { label: "Privacy", href: "/privacy", external: false },
+      { label: "Terms", href: "/terms", external: false },
     ],
   },
   {
     heading: "CONNECT",
     links: [
-      { label: "GitHub", href: "https://github.com" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/adityatiwari08" },
-      { label: "Email", href: "mailto:tiwariaditya005@gmail.com" },
+      {
+        label: "GitHub",
+        href: "https://github.com/adityatiwari12",
+        external: true,
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/adityatiwari08",
+        external: true,
+      },
+      {
+        label: "Email",
+        href: "mailto:tiwariaditya005@gmail.com",
+        external: true,
+      },
     ],
   },
 ];
@@ -43,7 +56,7 @@ export function Footer() {
             footer.frame
           </span>
           <a
-            href="#top"
+            href="#"
             aria-label="Back to top"
             className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:bg-white/10"
           >
@@ -64,12 +77,12 @@ export function Footer() {
               <ArrowUpRight className="size-8 text-brand transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 sm:size-10" />
             </a>
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 className="rounded-full bg-brand px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-[1.02]"
               >
                 Show us the idea
-              </a>
+              </Link>
               <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-white/60">
                 <span className="size-2 rounded-full bg-emerald-400" />
                 available for projects
@@ -77,23 +90,36 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 sm:gap-14">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-14">
             {COLUMNS.map((col) => (
               <div key={col.heading}>
                 <p className="font-mono text-[11px] font-bold tracking-wide text-white/40 uppercase">
                   {col.heading}
                 </p>
                 <ul className="mt-3 space-y-2.5">
-                  {col.links.map((l) => (
-                    <li key={l.label}>
-                      <a
-                        href={l.href}
-                        className="text-sm font-semibold text-white/80 transition-colors hover:text-white"
-                      >
-                        {l.label}
-                      </a>
-                    </li>
-                  ))}
+                  {col.links.map((l) =>
+                    l.external ? (
+                      <li key={l.label}>
+                        <a
+                          href={l.href}
+                          target={l.href.startsWith("http") ? "_blank" : undefined}
+                          rel={l.href.startsWith("http") ? "noreferrer" : undefined}
+                          className="text-sm font-semibold text-white/80 transition-colors hover:text-white"
+                        >
+                          {l.label}
+                        </a>
+                      </li>
+                    ) : (
+                      <li key={l.label}>
+                        <Link
+                          href={l.href}
+                          className="text-sm font-semibold text-white/80 transition-colors hover:text-white"
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
             ))}
@@ -112,7 +138,17 @@ export function Footer() {
             <span className="size-1.5 rounded-full bg-emerald-400" />
             studio online · {clock?.time ?? "--:--"} IST
           </span>
-          <span>© 2026 · made by OH MY DEV, not a template</span>
+          <span>
+            © 2026 · built by Aditya Tiwari &amp;{" "}
+            <a
+              href="https://www.linkedin.com/in/aryan-singh-bhadoria-70086a28a/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-white/60 underline decoration-white/20 underline-offset-2 hover:text-white"
+            >
+              Aryan Singh Bhadoria
+            </a>
+          </span>
         </div>
       </div>
     </footer>

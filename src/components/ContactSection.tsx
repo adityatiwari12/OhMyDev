@@ -1,7 +1,12 @@
-import { CalendarDays, Mail, ArrowUpRight } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { CalendarDays, Mail, Check, ArrowUpRight } from "lucide-react";
 import { FrameTag } from "./FigmaChrome";
 import { CalendlyButton } from "./CalendlyButton";
 import { LinkedinIcon } from "./icons";
+
+const EMAIL = "tiwariaditya005@gmail.com";
 
 const cardClass =
   "group frame-shadow flex flex-col items-start gap-4 rounded-2xl border border-ink/10 bg-white p-6 text-left transition-transform hover:-translate-y-1";
@@ -9,6 +14,18 @@ const iconWrapClass =
   "flex size-11 items-center justify-center rounded-xl bg-soft text-ink transition-colors group-hover:bg-brand group-hover:text-white";
 
 export function ContactSection() {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopyEmail() {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  }
+
   return (
     <section id="contact" className="canvas-section py-24">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
@@ -41,26 +58,33 @@ export function ContactSection() {
           </span>
         </CalendlyButton>
 
-        <a
-          href="mailto:tiwariaditya005@gmail.com"
+        <button
+          type="button"
+          onClick={handleCopyEmail}
           className={cardClass}
         >
           <span className={iconWrapClass}>
-            <Mail className="size-5" />
+            {copied ? <Check className="size-5" /> : <Mail className="size-5" />}
           </span>
           <span>
             <span className="font-heading block text-lg font-bold text-ink">
               Email
             </span>
             <span className="mt-1 block text-sm break-all text-ink-soft">
-              tiwariaditya005@gmail.com
+              {EMAIL}
             </span>
           </span>
           <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-brand">
-            Send an email
-            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            {copied ? (
+              "Copied to clipboard"
+            ) : (
+              <>
+                Click to copy
+                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </>
+            )}
           </span>
-        </a>
+        </button>
 
         <a
           href="https://www.linkedin.com/in/adityatiwari08"

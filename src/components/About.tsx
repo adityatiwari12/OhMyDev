@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import Link from "next/link";
 import { FrameTag } from "./FigmaChrome";
 import { InitialAvatar } from "./icons";
 import { TESTIMONIALS } from "@/data/content";
@@ -120,11 +121,19 @@ export function About() {
         </h2>
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-          <p className="max-w-xl text-lg leading-relaxed text-ink-soft">
-            That reaction is the whole point. One engineer doing
-            architecture, design and code for businesses that refuse to run
-            on spreadsheets and guesswork. No templates, ever.
-          </p>
+          <div>
+            <p className="max-w-xl text-lg leading-relaxed text-ink-soft">
+              That reaction is the whole point. One engineer doing
+              architecture, design and code for businesses that refuse to
+              run on spreadsheets and guesswork. No templates, ever.
+            </p>
+            <Link
+              href="/about"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand hover:underline"
+            >
+              Read our full story →
+            </Link>
+          </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-ink px-4 py-2 font-mono text-[11px] font-bold tracking-wide text-white uppercase">

@@ -1,14 +1,15 @@
+import Image from "next/image";
+
 export function Logomark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" fill="none" className={className} aria-hidden>
-      <rect width="32" height="32" rx="9" fill="var(--ink)" />
-      <path
-        d="M9 20.5c0-4.5 2.9-7.5 7-7.5s7 3 7 7.5-2.9 6-7 6-7-1.5-7-6Z"
-        fill="var(--brand)"
-      />
-      <circle cx="13.2" cy="12.2" r="2" fill="#fff" />
-      <circle cx="19" cy="12.6" r="1.6" fill="#fff" />
-    </svg>
+    <Image
+      src="/logo-mark.png"
+      alt="OH MY DEV"
+      width={128}
+      height={128}
+      className={`${className ?? ""} object-contain`}
+      priority
+    />
   );
 }
 

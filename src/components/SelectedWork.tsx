@@ -32,7 +32,7 @@ export function SelectedWork() {
                   <h3 className="font-heading truncate text-2xl font-extrabold text-ink transition-colors group-hover:text-brand sm:text-3xl">
                     {item.title}
                   </h3>
-                  <p className="mt-1 hidden max-w-md text-sm text-ink-soft sm:block">
+                  <p className="mt-1 max-w-md text-sm text-ink-soft">
                     {item.description}
                   </p>
                   <div className="mt-2 flex flex-wrap gap-1.5">
@@ -48,7 +48,7 @@ export function SelectedWork() {
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-4">
-                <span className="hidden font-mono text-sm text-ink-faint sm:inline">
+                <span className="font-mono text-sm text-ink-faint">
                   {item.year}
                 </span>
                 <span className="flex size-9 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors group-hover:border-brand group-hover:bg-brand group-hover:text-white">
