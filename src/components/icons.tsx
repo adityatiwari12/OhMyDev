@@ -5,8 +5,8 @@ export function Logomark({ className }: { className?: string }) {
     <Image
       src="/logo-mark.png"
       alt="OH MY DEV"
-      width={128}
-      height={128}
+      width={256}
+      height={256}
       className={`${className ?? ""} object-contain`}
       priority
     />

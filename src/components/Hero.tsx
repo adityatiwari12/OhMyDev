@@ -6,7 +6,7 @@ import { SelectionFrame } from "./FigmaChrome";
 
 const NAV = [
   { label: "Home", href: "#top" },
-  { label: "About", href: "#about" },
+  { label: "About", href: "/about" },
   { label: "Process", href: "#process" },
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
