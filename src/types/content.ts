@@ -35,6 +35,7 @@ export interface WorkItem {
   tags: string[];
   year: string;
   href?: string;
+  video?: string;
 }
 
 export interface ComparisonRow {

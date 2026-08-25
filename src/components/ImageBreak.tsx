@@ -22,7 +22,7 @@ export function ImageBreak() {
   infra: ["AWS", "Docker", "Vercel"],
 };
 
-// one engineer. zero handoffs. shipped in prod.
+// ten engineers. zero handoffs. shipped in prod.
 deploy(stack).then(() => console.log("done ✓"));`}</code>
           </pre>
         </div>

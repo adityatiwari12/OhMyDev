@@ -150,6 +150,9 @@ export const WORK_ITEMS: WorkItem[] = [
       "End-to-end fashion commerce platform with inventory, payments and admin dashboard.",
     tags: ["COMMERCE", "NEXT.JS"],
     year: "2025",
+    href: "https://onestoremysha.com",
+    video:
+      "https://mvpd8cafqolvswjj.public.blob.vercel-storage.com/work/onestore-mysha-9LAiK2Pj27202seuebjJWswRCOUnyp.mp4",
   },
   {
     index: "/05",
@@ -158,13 +161,14 @@ export const WORK_ITEMS: WorkItem[] = [
       "Personalised gifting platform for managing products, customers and online orders.",
     tags: ["COMMERCE", "SAAS"],
     year: "2025",
+    video: "https://mvpd8cafqolvswjj.public.blob.vercel-storage.com/work/surprizo.mp4",
   },
 ];
 
 export const COMPARISON: ComparisonRow[] = [
   {
     them: "Pitched by a senior, built by whoever is free.",
-    us: "You talk to the engineer actually writing the code.",
+    us: "You talk to the engineers actually building your product.",
   },
   {
     them: "Booked out for weeks, then slow to deliver.",
@@ -243,6 +247,6 @@ export const FAQ_ITEMS: FaqItem[] = [
     frame: "MAINTENANCE.FRAME",
     question: "Do you provide long-term maintenance?",
     answer:
-      "Yes. Most clients stay on for ongoing support, monitoring and iteration after launch — it's easier to keep improving something one engineer already understands deeply than to hand it to someone new.",
+      "Yes. Most clients stay on for ongoing support, monitoring and iteration after launch — it's easier to keep improving something our team already understands deeply than to hand it to someone new.",
   },
 ];

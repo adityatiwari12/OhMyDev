@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         frame="privacy.frame"
         title="Privacy Policy"
         updated="25 August 2026"
-        intro="OH MY DEV is a solo-founder software engineering studio. This page explains, in plain language, what information we collect through this website and client work, and what we do with it."
+        intro="OH MY DEV is a software engineering studio founded by Aditya Tiwari. This page explains, in plain language, what information we collect through this website and client work, and what we do with it."
         sections={[
           {
             heading: "Who this applies to",

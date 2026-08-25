@@ -6,23 +6,39 @@ import { FrameTag } from "./FigmaChrome";
 import { CalendlyButton } from "./CalendlyButton";
 import { LinkedinIcon } from "./icons";
 
-const EMAIL = "tiwariaditya005@gmail.com";
+const EMAILS = [
+  { name: "Aditya", email: "tiwariaditya005@gmail.com" },
+  { name: "Aryan", email: "aryanbhadoria100@gmail.com" },
+];
+
+const LINKEDINS = [
+  {
+    name: "Aditya",
+    handle: "@adityatiwari08",
+    href: "https://www.linkedin.com/in/adityatiwari08",
+  },
+  {
+    name: "Aryan",
+    handle: "@aryan-singh-bhadoria",
+    href: "https://www.linkedin.com/in/aryan-singh-bhadoria-70086a28a/",
+  },
+];
 
 const cardClass =
-  "group frame-shadow flex flex-col items-start gap-4 rounded-2xl border border-ink/10 bg-white p-6 text-left transition-transform hover:-translate-y-1";
+  "frame-shadow flex flex-col items-start gap-4 rounded-2xl border border-ink/10 bg-white p-6 text-left transition-transform hover:-translate-y-1";
 const iconWrapClass =
-  "flex size-11 items-center justify-center rounded-xl bg-soft text-ink transition-colors group-hover:bg-brand group-hover:text-white";
+  "flex size-11 items-center justify-center rounded-xl bg-soft text-ink";
 
 export function ContactSection() {
-  const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
 
-  async function handleCopyEmail() {
+  async function handleCopyEmail(email: string) {
     try {
-      await navigator.clipboard.writeText(EMAIL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
+      await navigator.clipboard.writeText(email);
+      setCopiedEmail(email);
+      setTimeout(() => setCopiedEmail((cur) => (cur === email ? null : cur)), 1800);
     } catch {
-      window.location.href = `mailto:${EMAIL}`;
+      window.location.assign(`mailto:${email}`);
     }
   }
 
@@ -40,8 +56,8 @@ export function ContactSection() {
       </div>
 
       <div className="mx-auto mt-12 grid max-w-4xl gap-5 px-4 sm:px-6 md:grid-cols-3">
-        <CalendlyButton className={cardClass}>
-          <span className={iconWrapClass}>
+        <CalendlyButton className={`group ${cardClass}`}>
+          <span className="flex size-11 items-center justify-center rounded-xl bg-soft text-ink transition-colors group-hover:bg-brand group-hover:text-white">
             <CalendarDays className="size-5" />
           </span>
           <span>
@@ -58,56 +74,72 @@ export function ContactSection() {
           </span>
         </CalendlyButton>
 
-        <button
-          type="button"
-          onClick={handleCopyEmail}
-          className={cardClass}
-        >
+        <div className={cardClass}>
           <span className={iconWrapClass}>
-            {copied ? <Check className="size-5" /> : <Mail className="size-5" />}
+            <Mail className="size-5" />
           </span>
-          <span>
-            <span className="font-heading block text-lg font-bold text-ink">
-              Email
-            </span>
-            <span className="mt-1 block text-sm break-all text-ink-soft">
-              {EMAIL}
-            </span>
+          <span className="font-heading block text-lg font-bold text-ink">
+            Email
           </span>
-          <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-brand">
-            {copied ? (
-              "Copied to clipboard"
-            ) : (
-              <>
-                Click to copy
-                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </>
-            )}
-          </span>
-        </button>
+          <div className="-mt-2 flex w-full flex-col divide-y divide-ink/5">
+            {EMAILS.map((p) => (
+              <button
+                key={p.email}
+                type="button"
+                onClick={() => handleCopyEmail(p.email)}
+                className="group flex items-center justify-between gap-3 py-3 text-left"
+              >
+                <span className="min-w-0">
+                  <span className="block font-mono text-[10px] font-bold tracking-wide text-ink-faint uppercase">
+                    {p.name}
+                  </span>
+                  <span className="block truncate text-sm text-ink-soft group-hover:text-ink">
+                    {p.email}
+                  </span>
+                </span>
+                <span className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-brand">
+                  {copiedEmail === p.email ? (
+                    <>
+                      Copied <Check className="size-3.5" />
+                    </>
+                  ) : (
+                    "Copy"
+                  )}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
 
-        <a
-          href="https://www.linkedin.com/in/adityatiwari08"
-          target="_blank"
-          rel="noreferrer"
-          className={cardClass}
-        >
+        <div className={cardClass}>
           <span className={iconWrapClass}>
             <LinkedinIcon className="size-5" />
           </span>
-          <span>
-            <span className="font-heading block text-lg font-bold text-ink">
-              LinkedIn
-            </span>
-            <span className="mt-1 block text-sm text-ink-soft">
-              @adityatiwari08
-            </span>
+          <span className="font-heading block text-lg font-bold text-ink">
+            LinkedIn
           </span>
-          <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-brand">
-            View profile
-            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
-        </a>
+          <div className="-mt-2 flex w-full flex-col divide-y divide-ink/5">
+            {LINKEDINS.map((p) => (
+              <a
+                key={p.href}
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between gap-3 py-3 text-left"
+              >
+                <span className="min-w-0">
+                  <span className="block font-mono text-[10px] font-bold tracking-wide text-ink-faint uppercase">
+                    {p.name}
+                  </span>
+                  <span className="block truncate text-sm text-ink-soft group-hover:text-ink">
+                    {p.handle}
+                  </span>
+                </span>
+                <ArrowUpRight className="size-4 shrink-0 text-brand transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -167,46 +167,17 @@ function CustomSoftwareVisual() {
 
 function WebAppVisual() {
   return (
-    <div className="flex h-full flex-col bg-white">
+    <div className="flex h-full flex-col bg-black">
       <ChromeBar label="ohmydev.dev" />
-      <div className="flex flex-1 flex-col bg-white">
-        <div className="flex items-center justify-between border-b border-ink/10 px-4 py-2.5">
-          <span className="flex items-center gap-1.5">
-            <span className="size-2 rounded-full bg-brand" />
-            <span className="font-heading text-[11px] font-extrabold text-ink">
-              OH MY DEV
-            </span>
-          </span>
-          <span className="hidden gap-3 sm:flex">
-            {["Home", "Work", "Pricing"].map((l) => (
-              <span key={l} className="font-mono text-[9px] text-ink-faint">
-                {l}
-              </span>
-            ))}
-          </span>
-          <span className="rounded-full bg-ink px-2.5 py-1 font-mono text-[8px] font-bold text-white">
-            Contact
-          </span>
-        </div>
-        <div className="relative flex flex-1 flex-col items-center justify-center gap-2.5 bg-gradient-to-b from-tool/10 to-brand/5 px-6 py-6 text-center">
-          <span className="h-2 w-40 rounded-full bg-ink/15" />
-          <span className="h-2 w-28 rounded-full bg-ink/10" />
-          <span className="mt-2 rounded-full bg-brand px-4 py-1.5 font-mono text-[9px] font-bold text-white">
-            Book a call
-          </span>
-        </div>
-        <div className="grid grid-cols-3 gap-2 border-t border-ink/10 p-3">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="space-y-1 rounded-md border border-ink/10 p-1.5">
-              <span className="block h-6 rounded bg-soft" />
-              <span className="block h-1 w-3/4 rounded-full bg-ink/10" />
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="border-t border-ink/10 bg-soft px-4 py-2 font-mono text-[10px] text-ink-faint">
-        production build · Next.js + Vercel
-      </div>
+      <video
+        src="https://mvpd8cafqolvswjj.public.blob.vercel-storage.com/services/web-applications.mp4"
+        className="flex-1 object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      <Caption text="production build · Next.js + Vercel" />
     </div>
   );
 }
@@ -581,11 +552,11 @@ export function Services() {
           What we make
         </h2>
         <p className="mt-3 hidden text-ink-soft md:block">
-          Six services, one engineer. Keep scrolling — the cards pan
+          Six services, ten engineers. Keep scrolling — the cards pan
           themselves.
         </p>
         <p className="mt-3 text-ink-soft md:hidden">
-          Six services, one engineer. Swipe to see them all.
+          Six services, ten engineers. Swipe to see them all.
         </p>
       </div>
 

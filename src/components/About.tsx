@@ -5,6 +5,7 @@ import { InitialAvatar } from "./icons";
 import { TESTIMONIALS } from "@/data/content";
 
 const METRICS = [
+  { value: "10", label: "ENGINEERS ON THE TEAM" },
   { value: "15+", label: "PRODUCTS SHIPPED" },
   { value: "6+", label: "HACKATHON WINS" },
   { value: "100K+", label: "LINES SHIPPED" },
@@ -123,9 +124,10 @@ export function About() {
         <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <p className="max-w-xl text-lg leading-relaxed text-ink-soft">
-              That reaction is the whole point. One engineer doing
-              architecture, design and code for businesses that refuse to
-              run on spreadsheets and guesswork. No templates, ever.
+              That reaction is the whole point. A team of 10 engineers
+              handling architecture, design and code for businesses that
+              refuse to run on spreadsheets and guesswork. No templates,
+              ever.
             </p>
             <Link
               href="/about"
@@ -145,7 +147,7 @@ export function About() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-8 border-t border-ink/10 pt-10 sm:grid-cols-3">
+        <div className="mt-14 grid grid-cols-2 gap-8 border-t border-ink/10 pt-10 sm:grid-cols-4">
           {METRICS.map((m) => (
             <div key={m.label}>
               <p className="font-heading text-4xl font-extrabold text-ink sm:text-5xl">
