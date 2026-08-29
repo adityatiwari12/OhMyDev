@@ -2,8 +2,8 @@
   return (
     <section className="canvas-section py-8 sm:py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-3 sm:px-4 md:px-6">
-        <div className="mb-6 sm:mb-8 md:mb-10 text-center">
-          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-ink mb-2 sm:mb-3">
+        <div className="mb-6 sm:mb-8 md:mb-10 rounded-lg sm:rounded-xl md:rounded-2xl bg-brand/10 backdrop-blur-sm border border-brand/20 px-6 sm:px-8 md:px-10 py-8 sm:py-10 md:py-12 text-center">
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-brand mb-2 sm:mb-3">
             ohmydev
           </h2>
           <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wide text-brand uppercase">
