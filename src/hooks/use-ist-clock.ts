@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore, useCallback } from "react";
 
 function formatSnapshot() {
   const date = new Date();
@@ -23,12 +23,17 @@ function formatSnapshot() {
   return `${time}|${hour24}`;
 }
 
+let lastSnapshot = "--:--:-- --|12";
+
 const subscribe = (callback: () => void) => {
-  const id = setInterval(callback, 1000);
+  const id = setInterval(() => {
+    lastSnapshot = formatSnapshot();
+    callback();
+  }, 1000);
   return () => clearInterval(id);
 };
 
-const getClientSnapshot = () => formatSnapshot();
+const getClientSnapshot = () => lastSnapshot || formatSnapshot();
 
 const getServerSnapshot = () => "--:--:-- --|12";
 
