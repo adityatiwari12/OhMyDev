@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import {
@@ -21,11 +21,11 @@ import type { ServiceItem } from "@/types/content";
 
 function ChromeBar({ label }: { label: string }) {
   return (
-    <div className="flex items-center gap-2 border-b border-white/10 bg-black/20 px-3.5 py-2.5">
-      <span className="size-2.5 rounded-full bg-red-400/70" />
-      <span className="size-2.5 rounded-full bg-yellow-400/70" />
-      <span className="size-2.5 rounded-full bg-green-400/70" />
-      <span className="ml-2 flex-1 truncate rounded-full bg-white/10 px-3 py-0.5 text-center font-mono text-[10px] text-white/50">
+    <div className="flex items-center gap-1.5 border-b border-white/10 bg-black/20 px-2.5 py-2 sm:gap-2 sm:px-3.5 sm:py-2.5">
+      <span className="size-2 sm:size-2.5 rounded-full bg-red-400/70" />
+      <span className="size-2 sm:size-2.5 rounded-full bg-yellow-400/70" />
+      <span className="size-2 sm:size-2.5 rounded-full bg-green-400/70" />
+      <span className="ml-1.5 flex-1 truncate rounded-full bg-white/10 px-2 py-0.5 text-center font-mono text-[8px] sm:ml-2 sm:px-3 sm:text-[10px] text-white/50">
         {label}
       </span>
     </div>
@@ -34,7 +34,7 @@ function ChromeBar({ label }: { label: string }) {
 
 function Caption({ text }: { text: string }) {
   return (
-    <div className="border-t border-white/10 bg-black/30 px-4 py-2 font-mono text-[10px] text-white/40">
+    <div className="border-t border-white/10 bg-black/30 px-3 py-1.5 font-mono text-[8px] text-white/40 sm:px-4 sm:py-2 sm:text-[10px]">
       {text}
     </div>
   );
@@ -51,34 +51,30 @@ function AutomationVisual() {
     <div className="flex h-full flex-col bg-gradient-to-br from-[#1a2230] to-[#0c1118]">
       <ChromeBar label="workflow.oh-my-dev.app" />
       <div
-        className="relative flex flex-1 items-center justify-center px-6"
+        className="relative flex flex-1 items-center justify-center px-3 sm:px-6"
         style={{
           backgroundImage:
             "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
           backgroundSize: "18px 18px",
         }}
       >
-        <div className="flex w-full max-w-md items-center justify-between">
+        <div className="flex w-full max-w-md items-center justify-between gap-1 sm:gap-2 md:gap-3">
           {steps.map((s, i) => (
-            <div key={s.label} className="flex items-center">
-              <div className="flex flex-col items-center gap-2">
+            <div key={s.label} className="flex items-center flex-1 min-w-0">
+              <div className="flex flex-col items-center gap-1 sm:gap-2 w-full">
                 <span
-                  className={`flex size-12 items-center justify-center rounded-xl shadow-lg ${
-                    i === 2
-                      ? "bg-brand"
-                      : "border border-white/10 bg-white/10 backdrop-blur"
-                  }`}
+                  className={lex size-9 sm:size-12 items-center justify-center rounded-lg sm:rounded-xl shadow-lg shrink-0 }
                 >
                   <s.icon
-                    className={`size-5 ${i === 2 ? "text-white" : "text-white/70"}`}
+                    className={size-4 sm:size-5 }
                   />
                 </span>
-                <span className="font-mono text-[9px] font-semibold text-white/50 uppercase">
+                <span className="font-mono text-[7px] sm:text-[9px] font-semibold text-white/50 uppercase text-center leading-tight">
                   {s.label}
                 </span>
               </div>
               {i < steps.length - 1 && (
-                <span className="relative mx-2 h-px w-8 overflow-hidden bg-white/15 sm:w-10">
+                <span className="relative mx-0.5 sm:mx-2 h-px w-1 sm:w-8 overflow-hidden bg-white/15 flex-shrink-0">
                   <span className="absolute inset-y-0 left-0 w-2 animate-[pulse-dot_1.8s_linear_infinite] bg-brand" />
                 </span>
               )}
@@ -202,7 +198,7 @@ function ApiIntegrationsVisual() {
             />
           ))}
         </svg>
-        <span className="absolute top-1/2 left-1/2 z-10 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl bg-brand font-mono text-[10px] font-bold text-white shadow-xl">
+        <span className="absolute top-1/2 left-1/2 z-10 flex size-10 sm:size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg sm:rounded-2xl bg-brand font-mono text-[8px] sm:text-[10px] font-bold text-white shadow-xl">
           OH MY
           <br />
           DEV
@@ -210,10 +206,10 @@ function ApiIntegrationsVisual() {
         {nodes.map((n) => (
           <span
             key={n.label}
-            className={`absolute ${n.pos} flex items-center gap-1.5 rounded-full border border-white/10 bg-white/10 px-2.5 py-1.5 text-[9px] font-bold text-white shadow-lg backdrop-blur`}
+            className={bsolute  flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1 sm:px-2.5 sm:py-1.5 text-[7px] sm:text-[9px] font-bold text-white shadow-lg backdrop-blur}
           >
             <span
-              className="size-2 rounded-full"
+              className="size-1.5 sm:size-2 rounded-full"
               style={{ background: n.bg }}
             />
             {n.label}
@@ -238,63 +234,63 @@ function ServiceCard({ item }: { item: ServiceItem }) {
   const [open, setOpen] = useState(false);
   const Visual = VISUALS[item.slug] ?? CustomSoftwareVisual;
   return (
-    <div className="w-[90vw] shrink-0 md:w-[min(86vw,1180px)]">
-      <p className="mb-3 font-mono text-xs font-bold tracking-wide text-brand">
+    <div className="w-[90vw] shrink-0 sm:w-[85vw] md:w-[min(86vw,1180px)]">
+      <p className="mb-2 font-mono text-[9px] sm:text-xs font-bold tracking-wide text-brand">
         □ {item.index} {item.title.replace(/\s+/g, "-")}
       </p>
-      <div className="frame-shadow max-h-[78vh] overflow-y-auto rounded-2xl border border-ink/10 bg-white p-6 sm:p-8 lg:p-10">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+      <div className="frame-shadow max-h-[75vh] overflow-y-auto rounded-xl sm:rounded-2xl border border-ink/10 bg-white p-4 sm:p-6 lg:p-10">
+        <div className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <div>
-            <span className="inline-flex size-10 items-center justify-center rounded-lg bg-soft font-mono text-xs font-bold text-ink-faint">
+            <span className="inline-flex size-8 sm:size-10 items-center justify-center rounded-lg bg-soft font-mono text-[10px] sm:text-xs font-bold text-ink-faint">
               {item.index}
             </span>
-            <h3 className="font-heading mt-5 text-4xl leading-[0.95] font-extrabold text-ink lg:text-5xl">
+            <h3 className="font-heading mt-3 sm:mt-5 text-2xl sm:text-4xl leading-[0.95] font-extrabold text-ink lg:text-5xl">
               {item.title}
             </h3>
-            <p className="font-heading text-4xl leading-[0.95] font-extrabold text-brand lg:text-5xl">
+            <p className="font-heading text-2xl sm:text-4xl leading-[0.95] font-extrabold text-brand lg:text-5xl">
               {item.subtitle}
             </p>
-            <p className="mt-4 max-w-sm text-base text-ink-soft">
+            <p className="mt-2 sm:mt-4 max-w-sm text-sm sm:text-base text-ink-soft">
               {item.description}
             </p>
 
             <button
               onClick={() => setOpen((v) => !v)}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand/40 px-4 py-2 font-mono text-[11px] font-bold tracking-wide text-brand uppercase transition-colors hover:bg-brand/5"
+              className="mt-4 sm:mt-6 inline-flex items-center gap-2 rounded-full border border-brand/40 px-3 py-1.5 font-mono text-[9px] sm:text-[11px] font-bold tracking-wide text-brand uppercase transition-colors hover:bg-brand/5"
             >
               see process + deliverables
               {open ? (
-                <ChevronUp className="size-3.5" />
+                <ChevronUp className="size-3 sm:size-3.5" />
               ) : (
-                <ChevronDown className="size-3.5" />
+                <ChevronDown className="size-3 sm:size-3.5" />
               )}
             </button>
           </div>
 
-          <div className="h-[300px] w-full overflow-hidden rounded-xl border border-ink/10 shadow-2xl lg:h-[360px]">
+          <div className="h-[240px] sm:h-[300px] w-full overflow-hidden rounded-lg sm:rounded-xl border border-ink/10 shadow-2xl lg:h-[360px]">
             <Visual />
           </div>
         </div>
 
         {open && (
-          <div className="mt-8 grid gap-6 border-t border-ink/10 pt-6 sm:grid-cols-2">
+          <div className="mt-4 sm:mt-8 grid gap-4 sm:gap-6 border-t border-ink/10 pt-4 sm:pt-6 sm:grid-cols-2">
             <div>
-              <p className="font-mono text-[11px] font-bold tracking-wide text-ink-faint uppercase">
+              <p className="font-mono text-[9px] sm:text-[11px] font-bold tracking-wide text-ink-faint uppercase">
                 the work
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-ink-soft">
                 {item.work}
               </p>
             </div>
             <div>
-              <p className="font-mono text-[11px] font-bold tracking-wide text-ink-faint uppercase">
+              <p className="font-mono text-[9px] sm:text-[11px] font-bold tracking-wide text-ink-faint uppercase">
                 deliverables
               </p>
-              <div className="mt-2 flex flex-wrap gap-2">
+              <div className="mt-2 flex flex-wrap gap-1.5 sm:gap-2">
                 {item.deliverables.map((d) => (
                   <span
                     key={d}
-                    className="rounded-md border border-ink/10 bg-soft px-2.5 py-1 text-xs font-semibold text-ink-soft"
+                    className="rounded border border-ink/10 bg-soft px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-ink-soft"
                   >
                     {d}
                   </span>
@@ -317,9 +313,6 @@ function ScrollPan() {
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
-    // How much vertical scroll one card "costs" — decoupled from the card's
-    // actual pixel width so panning always takes a deliberate amount of
-    // scrolling, regardless of viewport size or card count.
     const SCROLL_PER_CARD_VH = 0.9;
 
     function scrollDistance() {
@@ -348,7 +341,7 @@ function ScrollPan() {
           Math.max(-rect.top / scrollDistance(), 0),
           1,
         );
-        trackRef.current.style.transform = `translate3d(${-progress * maxTranslate}px,0,0)`;
+        trackRef.current.style.transform = \	ranslate3d(\px,0,0)\;
         setActiveIndex(
           Math.min(
             SERVICES.length - 1,
@@ -383,18 +376,18 @@ function ScrollPan() {
       >
         <div
           ref={trackRef}
-          className="flex gap-10 px-4 will-change-transform sm:px-6 md:px-[calc((100vw-1180px)/2)]"
+          className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6 will-change-transform md:px-[calc((100vw-1180px)/2)]"
         >
           {SERVICES.map((s) => (
             <ServiceCard key={s.slug} item={s} />
           ))}
         </div>
       </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-10 flex justify-center gap-1.5">
+      <div className="pointer-events-none absolute inset-x-0 bottom-10 flex justify-center gap-1 sm:gap-1.5">
         {SERVICES.map((s, i) => (
           <span
             key={s.slug}
-            className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-brand" : "w-1.5 bg-ink/15"}`}
+            className={h-1 sm:h-1.5 rounded-full transition-all }
           />
         ))}
       </div>
@@ -404,23 +397,23 @@ function ScrollPan() {
 
 export function Services() {
   return (
-    <section id="services" className="canvas-section py-24 md:py-0">
-      <div className="mx-auto max-w-3xl px-4 pt-0 pb-12 text-center sm:px-6 md:pt-24">
-        <h2 className="font-heading text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[48px]">
+    <section id="services" className="canvas-section py-12 sm:py-16 md:py-24 md:py-0">
+      <div className="mx-auto max-w-3xl px-3 pt-0 pb-6 sm:px-4 sm:pb-8 md:pt-24 md:pb-12 text-center md:pb-12">
+        <h2 className="font-heading text-[28px] sm:text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase md:text-[48px]">
           What we make
         </h2>
-        <p className="mt-3 hidden text-ink-soft md:block">
+        <p className="mt-2 sm:mt-3 hidden text-sm sm:text-base text-ink-soft md:block">
           Six services, ten engineers. Keep scrolling — the cards pan
           themselves.
         </p>
-        <p className="mt-3 text-ink-soft md:hidden">
+        <p className="mt-2 sm:mt-3 text-sm text-ink-soft md:hidden">
           Six services, ten engineers. Swipe to see them all.
         </p>
       </div>
 
       <ScrollPan />
 
-      <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:hidden">
+      <div className="no-scrollbar flex snap-x snap-mandatory gap-3 sm:gap-4 md:gap-6 overflow-x-auto px-3 sm:px-4 pb-3 sm:pb-4 md:hidden">
         {SERVICES.map((s) => (
           <div key={s.slug} className="snap-center">
             <ServiceCard item={s} />
@@ -428,9 +421,9 @@ export function Services() {
         ))}
         <div className="w-px shrink-0" aria-hidden />
       </div>
-      <div className="flex justify-center gap-1.5 pb-2 md:hidden" aria-hidden>
+      <div className="flex justify-center gap-1 sm:gap-1.5 pb-2 md:hidden" aria-hidden>
         {SERVICES.map((s) => (
-          <span key={s.slug} className="size-1.5 rounded-full bg-ink/15" />
+          <span key={s.slug} className="size-1 sm:size-1.5 rounded-full bg-ink/15" />
         ))}
       </div>
     </section>
