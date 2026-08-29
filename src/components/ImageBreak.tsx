@@ -2,11 +2,16 @@
   return (
     <section className="canvas-section py-8 sm:py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-3 sm:px-4 md:px-6">
-        <div className="mb-6 sm:mb-8 md:mb-10 rounded-lg sm:rounded-xl md:rounded-2xl bg-brand px-6 sm:px-8 md:px-10 py-8 sm:py-10 md:py-12 text-center">
-          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-2 sm:mb-3">
+        <div className="mb-6 sm:mb-8 md:mb-10 rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-b from-blue-400 to-blue-300 px-6 sm:px-8 md:px-10 py-8 sm:py-10 md:py-12 text-center relative overflow-hidden"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, #60a5fa, #93c5fd), 
+              radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 80%, rgba(255,255,255,0.2) 0%, transparent 50%)`
+          }}>
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-2 sm:mb-3 relative z-10">
             ohmydev
           </h2>
-          <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wide text-white/90 uppercase">
+          <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wide text-white/90 uppercase relative z-10">
             Shipped 15+ products & 6+ hackathon wins
           </p>
         </div>
