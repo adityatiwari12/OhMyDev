@@ -307,6 +307,7 @@ function ScrollPan() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [wrapperHeight, setWrapperHeight] = useState<number | null>(null);
   const [active, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -317,7 +318,8 @@ function ScrollPan() {
     }
 
     function measure() {
-      if (!mq.matches || !viewportRef.current || !trackRef.current) {
+      setIsMobile(!mq.matches);
+      if (!viewportRef.current || !trackRef.current) {
         setWrapperHeight(null);
         return;
       }
@@ -328,7 +330,7 @@ function ScrollPan() {
     function onScroll() {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        if (!mq.matches || !wrapperRef.current || !trackRef.current || !viewportRef.current)
+        if (!wrapperRef.current || !trackRef.current || !viewportRef.current)
           return;
         const maxTranslate =
           trackRef.current.scrollWidth - viewportRef.current.clientWidth;
@@ -364,7 +366,7 @@ function ScrollPan() {
   return (
     <div
       ref={wrapperRef}
-      className="relative hidden md:block"
+      className="relative block"
       style={{ height: wrapperHeight ?? "100vh" }}
     >
       <div
@@ -404,25 +406,11 @@ export function Services() {
           themselves.
         </p>
         <p className="mt-3 text-ink-soft md:hidden">
-          Six services, ten engineers. Swipe to see them all.
+          Six services, ten engineers. Keep scrolling — the cards pan themselves.
         </p>
       </div>
 
       <ScrollPan />
-
-      <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:hidden">
-        {SERVICES.map((s) => (
-          <div key={s.slug} className="snap-center">
-            <ServiceCard item={s} />
-          </div>
-        ))}
-        <div className="w-px shrink-0" aria-hidden />
-      </div>
-      <div className="flex justify-center gap-1.5 pb-2 md:hidden" aria-hidden>
-        {SERVICES.map((s) => (
-          <span key={s.slug} className="size-1.5 rounded-full bg-ink/15" />
-        ))}
-      </div>
     </section>
   );
 }
