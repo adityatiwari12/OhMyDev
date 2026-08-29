@@ -305,28 +305,29 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 function ScrollPan() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const [active, setActive] = useState(0);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -((SERVICES.length - 1) * 100)]);
 
   useEffect(() => {
     return scrollYProgress.onChange((latest) => {
       const index = Math.round(latest * (SERVICES.length - 1));
-      setActive(Math.min(index, SERVICES.length - 1));
+      setActive(Math.max(0, Math.min(index, SERVICES.length - 1)));
     });
   }, [scrollYProgress]);
 
   return (
     <div ref={containerRef} className="relative w-full">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden bg-white">
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white">
         <motion.div
           ref={trackRef}
           style={{ x }}
-          className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6 md:px-[calc((100vw-1180px)/2)]"
+          className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6"
         >
           {SERVICES.map((s) => (
             <ServiceCard key={s.slug} item={s} />
@@ -334,15 +335,18 @@ function ScrollPan() {
         </motion.div>
       </div>
 
-      <div className="h-[300vh] w-full" />
+      <div style={{ height: `${SERVICES.length * 300}vh` }} />
 
       <div className="pointer-events-none fixed bottom-10 left-1/2 -translate-x-1/2 flex justify-center gap-1 sm:gap-1.5 z-50">
         {SERVICES.map((s, i) => (
-          <span
+          <motion.span
             key={s.slug}
-            className={`h-1 sm:h-1.5 rounded-full transition-all ${
-              i === active ? "w-4 sm:w-6 bg-brand" : "w-1 sm:w-1.5 bg-ink/15"
-            }`}
+            animate={{
+              width: i === active ? 24 : 6,
+              backgroundColor: i === active ? "#f05321" : "rgba(0,0,0,0.1)",
+            }}
+            transition={{ duration: 0.3 }}
+            className="h-1.5 sm:h-2 rounded-full"
           />
         ))}
       </div>
