@@ -79,7 +79,7 @@ export function SelectedWork() {
                   onClick={() =>
                     setOpenVideo({ title: item.title, src: item.video! })
                   }
-                  aria-label={\Watch \ demo\}
+                  aria-label={`Watch ${item.title} demo`}
                   className="flex size-8 sm:size-9 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-brand hover:bg-brand hover:text-white flex-shrink-0"
                 >
                   <Play className="size-3 sm:size-3.5 fill-current" />
@@ -90,7 +90,7 @@ export function SelectedWork() {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={\Visit \\}
+                  aria-label={`Visit ${item.title}`}
                   className="flex size-8 sm:size-9 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-brand hover:bg-brand hover:text-white flex-shrink-0"
                 >
                   <ArrowUpRight className="size-3.5 sm:size-4" />
