@@ -304,20 +304,21 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 
 function ScrollPan() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end center"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, -((SERVICES.length - 1) * 100)]);
+  // Calculate x position: move left by card width * number of cards
+  // For 6 cards: translate to -500% to show all cards
+  const x = useTransform(scrollYProgress, [0, 1], [0, -(SERVICES.length - 1) * 100]);
 
   useEffect(() => {
-    return scrollYProgress.onChange((latest) => {
-      const index = Math.round(latest * (SERVICES.length - 1));
-      setActive(Math.max(0, Math.min(index, SERVICES.length - 1)));
+    return scrollYProgress.onChange((progress) => {
+      const newIndex = Math.round(progress * (SERVICES.length - 1));
+      setActive(Math.max(0, Math.min(newIndex, SERVICES.length - 1)));
     });
   }, [scrollYProgress]);
 
@@ -325,9 +326,8 @@ function ScrollPan() {
     <div ref={containerRef} className="relative w-full">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white">
         <motion.div
-          ref={trackRef}
           style={{ x }}
-          className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6"
+          className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6 will-change-transform"
         >
           {SERVICES.map((s) => (
             <ServiceCard key={s.slug} item={s} />
@@ -335,8 +335,10 @@ function ScrollPan() {
         </motion.div>
       </div>
 
-      <div style={{ height: `${SERVICES.length * 300}vh` }} />
+      {/* Scroll spacer - increase height to allow panning through all cards */}
+      <div style={{ height: `${(SERVICES.length - 1) * 150}vh` }} />
 
+      {/* Dot indicators */}
       <div className="pointer-events-none fixed bottom-10 left-1/2 -translate-x-1/2 flex justify-center gap-1 sm:gap-1.5 z-50">
         {SERVICES.map((s, i) => (
           <motion.span
@@ -345,7 +347,7 @@ function ScrollPan() {
               width: i === active ? 24 : 6,
               backgroundColor: i === active ? "#f05321" : "rgba(0,0,0,0.1)",
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
             className="h-1.5 sm:h-2 rounded-full"
           />
         ))}
