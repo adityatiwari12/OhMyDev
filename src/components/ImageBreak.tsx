@@ -1,30 +1,31 @@
 ﻿export function ImageBreak() {
   return (
-    <section className="canvas-section py-8 sm:py-12 md:py-16">
-      <div className="mx-auto max-w-5xl px-3 sm:px-4 md:px-6">
-        <div className="mb-6 sm:mb-8 md:mb-10 rounded-lg sm:rounded-xl md:rounded-2xl px-6 sm:px-8 md:px-10 py-8 sm:py-10 md:py-12 text-center relative overflow-hidden"
-          style={{
-            background: "linear-gradient(180deg, #60a5fa 0%, #3b82f6 50%, #1e40af 100%)",
-            boxShadow: "inset 0 0 60px rgba(255,255,255,0.1), inset 0 -20px 40px rgba(0,0,0,0.1)"
-          }}>
-          {/* Cloud effects */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-              style={{ transform: "translate(-30%, -30%)" }} />
-            <div className="absolute top-20 right-10 w-64 h-64 bg-white/5 rounded-full blur-2xl"
-              style={{ transform: "translate(20%, -10%)" }} />
+    <section className="canvas-section py-16 sm:py-20 md:py-24 bg-white">
+      <div className="mx-auto max-w-4xl px-3 sm:px-4 md:px-6">
+        {/* Headline and Tagline */}
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+          <div className="mb-4 sm:mb-6">
+            <span className="inline-block bg-red-500 text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded">
+              Shipped 15+
+            </span>
           </div>
-          
-          <div className="relative z-10">
-            <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-2 sm:mb-3">
-              ohmydev
-            </h2>
-            <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wide text-white/90 uppercase">
-              Shipped 15+ products & 6+ hackathon wins
-            </p>
-          </div>
+          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl font-extrabold text-ink mb-4 sm:mb-6 leading-tight">
+            SOFTWARE THAT<br />DOESN'T SLEEP.
+          </h2>
+          <p className="font-body text-base sm:text-lg md:text-xl text-ink/70 max-w-2xl mx-auto leading-relaxed">
+            From concept to deployed — we build production-grade software, automation & AI products for founders who move fast.
+          </p>
         </div>
-        <div className="frame-shadow overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-ink/10 bg-ink">
+
+        {/* CTA Button */}
+        <div className="text-center mb-16 sm:mb-20 md:mb-24">
+          <button className="inline-block border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 sm:px-10 py-3 sm:py-4 font-bold text-sm sm:text-base uppercase tracking-wider transition-all duration-200">
+            EXPLORE WORK
+          </button>
+        </div>
+
+        {/* Video */}
+        <div className="frame-shadow overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-ink/10 bg-ink mb-8 sm:mb-12">
           <div className="flex items-center justify-between border-b border-white/10 bg-black/20 px-2.5 py-1.5 sm:px-4 sm:py-2.5">
             <div className="flex items-center gap-1 sm:gap-1.5">
               <span className="size-1.5 sm:size-2.5 rounded-full bg-red-400/70" />
@@ -47,6 +48,11 @@
             <source src="/a_Custom_Software_Buil.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+        </div>
+
+        {/* Trust Line */}
+        <div className="text-center text-xs sm:text-sm text-ink/60">
+          Trusted by founders from <span className="font-semibold text-ink">FinTech, GovTech, Climate & AI</span>
         </div>
       </div>
     </section>
