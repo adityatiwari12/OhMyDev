@@ -303,17 +303,32 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 }
 
 function ScrollPan() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [isInView, setIsInView] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end center"],
+    offset: ["start start", "end end"],
   });
 
-  // Calculate x position: move left by card width * number of cards
-  // For 6 cards: translate to -500% to show all cards
   const x = useTransform(scrollYProgress, [0, 1], [0, -(SERVICES.length - 1) * 100]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     return scrollYProgress.onChange((progress) => {
@@ -323,35 +338,39 @@ function ScrollPan() {
   }, [scrollYProgress]);
 
   return (
-    <div ref={containerRef} className="relative w-full">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white">
-        <motion.div
-          style={{ x }}
-          className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6 will-change-transform"
-        >
-          {SERVICES.map((s) => (
-            <ServiceCard key={s.slug} item={s} />
+    <div ref={sectionRef} className="relative w-full">
+      <div ref={containerRef} className="relative w-full">
+        <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white">
+          <motion.div
+            style={{ x }}
+            className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6 will-change-transform"
+          >
+            {SERVICES.map((s) => (
+              <ServiceCard key={s.slug} item={s} />
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Scroll spacer */}
+        <div style={{ height: `${(SERVICES.length - 1) * 150}vh` }} />
+      </div>
+
+      {/* Dot indicators - only show when in view */}
+      {isInView && (
+        <div className="pointer-events-none fixed bottom-10 left-1/2 -translate-x-1/2 flex justify-center gap-1 sm:gap-1.5 z-50">
+          {SERVICES.map((s, i) => (
+            <motion.span
+              key={s.slug}
+              animate={{
+                width: i === active ? 24 : 6,
+                backgroundColor: i === active ? "#f05321" : "rgba(0,0,0,0.1)",
+              }}
+              transition={{ duration: 0.2 }}
+              className="h-1.5 sm:h-2 rounded-full"
+            />
           ))}
-        </motion.div>
-      </div>
-
-      {/* Scroll spacer - increase height to allow panning through all cards */}
-      <div style={{ height: `${(SERVICES.length - 1) * 150}vh` }} />
-
-      {/* Dot indicators */}
-      <div className="pointer-events-none fixed bottom-10 left-1/2 -translate-x-1/2 flex justify-center gap-1 sm:gap-1.5 z-50">
-        {SERVICES.map((s, i) => (
-          <motion.span
-            key={s.slug}
-            animate={{
-              width: i === active ? 24 : 6,
-              backgroundColor: i === active ? "#f05321" : "rgba(0,0,0,0.1)",
-            }}
-            transition={{ duration: 0.2 }}
-            className="h-1.5 sm:h-2 rounded-full"
-          />
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
