@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { SelectionFrame } from "./selection-frame";
+import { SelectionFrame } from "./FigmaChrome";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
