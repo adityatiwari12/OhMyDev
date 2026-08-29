@@ -2,6 +2,14 @@
   return (
     <section className="canvas-section py-8 sm:py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-3 sm:px-4 md:px-6">
+        <div className="mb-6 sm:mb-8 md:mb-10 text-center">
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-ink mb-2 sm:mb-3">
+            OMD
+          </h2>
+          <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wide text-brand uppercase">
+            Shipped 15+ products & 6+ hackathon wins
+          </p>
+        </div>
         <div className="frame-shadow overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-ink/10 bg-ink">
           <div className="flex items-center justify-between border-b border-white/10 bg-black/20 px-2.5 py-1.5 sm:px-4 sm:py-2.5">
             <div className="flex items-center gap-1 sm:gap-1.5">
