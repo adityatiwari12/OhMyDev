@@ -1,7 +1,6 @@
 ﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ChevronDown,
   ChevronUp,
@@ -303,91 +302,127 @@ function ServiceCard({ item }: { item: ServiceItem }) {
 }
 
 function ScrollPan() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-  const [isInView, setIsInView] = useState(false);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], [0, -(SERVICES.length - 1) * 100]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [wrapperHeight, setWrapperHeight] = useState<number | null>(null);
+  const [active, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
+    const mq = window.matchMedia("(min-width: 768px)");
+    const SCROLL_PER_CARD_VH = 0.9;
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    function scrollDistance() {
+      return window.innerHeight * SCROLL_PER_CARD_VH * SERVICES.length;
     }
 
-    return () => observer.disconnect();
+    function measure() {
+      if (!mq.matches || !viewportRef.current || !trackRef.current) {
+        setWrapperHeight(null);
+        return;
+      }
+      setWrapperHeight(window.innerHeight + scrollDistance());
+    }
+
+    let raf = 0;
+    function onScroll() {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        if (!mq.matches || !wrapperRef.current || !trackRef.current || !viewportRef.current)
+          return;
+        const maxTranslate =
+          trackRef.current.scrollWidth - viewportRef.current.clientWidth;
+        if (maxTranslate <= 0) return;
+        const rect = wrapperRef.current.getBoundingClientRect();
+        const progress = Math.min(
+          Math.max(-rect.top / scrollDistance(), 0),
+          1,
+        );
+        trackRef.current.style.transform = `translate3d(${-progress * maxTranslate}px,0,0)`;
+        setActiveIndex(
+          Math.min(
+            SERVICES.length - 1,
+            Math.round(progress * (SERVICES.length - 1)),
+          ),
+        );
+      });
+    }
+
+    measure();
+    onScroll();
+    window.addEventListener("resize", measure);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    mq.addEventListener("change", measure);
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", onScroll);
+      mq.removeEventListener("change", measure);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
-  useEffect(() => {
-    return scrollYProgress.onChange((progress) => {
-      const newIndex = Math.round(progress * (SERVICES.length - 1));
-      setActive(Math.max(0, Math.min(newIndex, SERVICES.length - 1)));
-    });
-  }, [scrollYProgress]);
-
   return (
-    <div ref={sectionRef} className="relative w-full">
-      <div ref={containerRef} className="relative w-full">
-        <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white">
-          <motion.div
-            style={{ x }}
-            className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6 will-change-transform"
-          >
-            {SERVICES.map((s) => (
-              <ServiceCard key={s.slug} item={s} />
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Scroll spacer */}
-        <div style={{ height: `${(SERVICES.length - 1) * 150}vh` }} />
-      </div>
-
-      {/* Dot indicators - only show when in view */}
-      {isInView && (
-        <div className="pointer-events-none fixed bottom-10 left-1/2 -translate-x-1/2 flex justify-center gap-1 sm:gap-1.5 z-50">
-          {SERVICES.map((s, i) => (
-            <motion.span
-              key={s.slug}
-              animate={{
-                width: i === active ? 24 : 6,
-                backgroundColor: i === active ? "#f05321" : "rgba(0,0,0,0.1)",
-              }}
-              transition={{ duration: 0.2 }}
-              className="h-1.5 sm:h-2 rounded-full"
-            />
+    <div
+      ref={wrapperRef}
+      className="relative hidden md:block"
+      style={{ height: wrapperHeight ?? "100vh" }}
+    >
+      <div
+        ref={viewportRef}
+        className="sticky top-0 flex h-screen items-center overflow-hidden"
+      >
+        <div
+          ref={trackRef}
+          className="flex gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6 will-change-transform md:px-[calc((100vw-1180px)/2)]"
+        >
+          {SERVICES.map((s) => (
+            <ServiceCard key={s.slug} item={s} />
           ))}
         </div>
-      )}
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-10 flex justify-center gap-1.5">
+        {SERVICES.map((s, i) => (
+          <span
+            key={s.slug}
+            className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-brand" : "w-1.5 bg-ink/15"}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
 export function Services() {
   return (
-    <section id="services" className="canvas-section py-12 sm:py-16 md:py-0">
-      <div className="mx-auto max-w-3xl px-3 pt-0 pb-6 sm:px-4 sm:pb-8 md:pt-24 md:pb-12 text-center md:pb-12">
-        <h2 className="font-heading text-[28px] sm:text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase md:text-[48px]">
+    <section id="services" className="canvas-section py-24 md:py-0">
+      <div className="mx-auto max-w-3xl px-4 pt-0 pb-12 text-center sm:px-6 md:pt-24">
+        <h2 className="font-heading text-[36px] leading-[1.05] font-extrabold tracking-tight text-ink uppercase sm:text-[48px]">
           What we make
         </h2>
-        <p className="mt-2 sm:mt-3 text-sm text-ink-soft">
-          Six services. Keep scrolling — the cards pan themselves.
+        <p className="mt-3 hidden text-ink-soft md:block">
+          Six services, ten engineers. Keep scrolling — the cards pan
+          themselves.
+        </p>
+        <p className="mt-3 text-ink-soft md:hidden">
+          Six services, ten engineers. Swipe to see them all.
         </p>
       </div>
 
       <ScrollPan />
+
+      <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:hidden">
+        {SERVICES.map((s) => (
+          <div key={s.slug} className="snap-center">
+            <ServiceCard item={s} />
+          </div>
+        ))}
+        <div className="w-px shrink-0" aria-hidden />
+      </div>
+      <div className="flex justify-center gap-1.5 pb-2 md:hidden" aria-hidden>
+        {SERVICES.map((s) => (
+          <span key={s.slug} className="size-1.5 rounded-full bg-ink/15" />
+        ))}
+      </div>
     </section>
   );
 }
