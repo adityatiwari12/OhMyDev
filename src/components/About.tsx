@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+﻿import { Star } from "lucide-react";
 import Link from "next/link";
 import { FrameTag } from "./FigmaChrome";
 import { InitialAvatar } from "./icons";
@@ -153,7 +153,7 @@ export function About() {
               <p className="font-heading text-4xl font-extrabold text-ink sm:text-5xl">
                 {m.value}
               </p>
-              <p className="mt-1 font-mono text-[11px] font-bold tracking-wide text-ink-faint uppercase">
+              <p className="mt-1 font-mono text-[11px] font-bold tracking-wide text-ink uppercase">
                 {m.label}
               </p>
             </div>

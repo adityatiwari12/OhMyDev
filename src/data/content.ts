@@ -167,7 +167,7 @@ export const WORK_ITEMS: WorkItem[] = [
     index: "/06",
     title: "LS Cycle",
     description:
-      "Rideable bike-share bicycle (FiveM asset package). Full custom-built GTA V bicycle with front basket, chain guard, rear ID plate with QR code, and rental control panel. Procedurally generated from pure Python + NumPy with organized, client-editable livery texture.",
+      "FiveM rideable bike-share bicycle. Full custom-built GTA V bicycle with basket, chain guard, QR plate, and rental panel — procedurally generated.",
     tags: ["GAMEDEV", "FIVEM", "3D MODELING"],
     year: "2026",
     video: "/Screen Recording 2026-08-14 120427.mp4",
@@ -176,7 +176,7 @@ export const WORK_ITEMS: WorkItem[] = [
     index: "/07",
     title: "Inkspace",
     description:
-      "Collaborative infinite canvas UI with glassmorphic design and real-time collaboration. Features GPU-accelerated panning, 6 starter templates (system design, roadmap, brainstorming, DSA, startup planning, AI workflow), and seamless dark mode.",
+      "Collaborative infinite canvas with glassmorphic UI and real-time sync. GPU-accelerated panning, 6 templates, and seamless dark mode.",
     tags: ["COLLABORATION", "NEXT.JS", "REALTIME"],
     year: "2026",
     href: "https://task-eight-psi-64.vercel.app/",
