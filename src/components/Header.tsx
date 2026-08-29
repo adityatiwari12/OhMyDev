@@ -49,7 +49,7 @@ export function Header() {
             <span
               key={t}
               className="absolute top-1/2 -translate-y-1/2 font-mono text-[8px] text-ink-faint lg:text-[9px]"
-              style={{ left: ${ (t / 1200) * 100}% }}
+              style={{ left: `${(t / 1200) * 100}%` }}
             >
               {t}
             </span>
