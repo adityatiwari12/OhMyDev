@@ -306,8 +306,6 @@ function ScrollPan() {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [wrapperHeight, setWrapperHeight] = useState<number | null>(null);
-  const [active, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -318,7 +316,6 @@ function ScrollPan() {
     }
 
     function measure() {
-      setIsMobile(!mq.matches);
       if (!viewportRef.current || !trackRef.current) {
         setWrapperHeight(null);
         return;
@@ -341,12 +338,6 @@ function ScrollPan() {
           1,
         );
         trackRef.current.style.transform = `translate3d(${-progress * maxTranslate}px,0,0)`;
-        setActiveIndex(
-          Math.min(
-            SERVICES.length - 1,
-            Math.round(progress * (SERVICES.length - 1)),
-          ),
-        );
       });
     }
 
@@ -381,14 +372,6 @@ function ScrollPan() {
             <ServiceCard key={s.slug} item={s} />
           ))}
         </div>
-      </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-10 flex justify-center gap-1.5">
-        {SERVICES.map((s, i) => (
-          <span
-            key={s.slug}
-            className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-brand" : "w-1.5 bg-ink/15"}`}
-          />
-        ))}
       </div>
     </div>
   );

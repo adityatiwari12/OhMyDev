@@ -65,12 +65,6 @@ export function Header() {
               </span>
             </div>
           )}
-          <div className="animate-float pointer-events-none absolute top-full left-[68%] flex flex-col items-center">
-            <span className="-mt-1 size-0 border-x-4 border-b-4 border-x-transparent border-b-brand" />
-            <span className="rounded bg-brand px-1.5 py-0.5 font-mono text-[8px] font-bold text-white shadow-sm lg:text-[9px]">
-              Aditya
-            </span>
-          </div>
         </div>
 
         <div className="ml-auto flex shrink-0 items-center gap-1 font-mono text-[8px] font-bold text-ink sm:gap-1.5 sm:text-[9px] md:text-[10px]">
