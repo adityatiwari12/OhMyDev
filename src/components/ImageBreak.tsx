@@ -4,7 +4,7 @@
       <div className="mx-auto max-w-5xl px-3 sm:px-4 md:px-6">
         <div className="mb-6 sm:mb-8 md:mb-10 text-center">
           <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-ink mb-2 sm:mb-3">
-            OMD
+            ohmydev
           </h2>
           <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wide text-brand uppercase">
             Shipped 15+ products & 6+ hackathon wins
