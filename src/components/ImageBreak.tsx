@@ -1,4 +1,4 @@
-export function ImageBreak() {
+﻿export function ImageBreak() {
   return (
     <section className="canvas-section py-16 sm:py-20 md:py-24 bg-white">
       <div className="mx-auto max-w-4xl px-3 sm:px-4 md:px-6">
@@ -10,10 +10,12 @@ export function ImageBreak() {
             </span>
           </div>
           <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl font-extrabold text-red-600 mb-4 sm:mb-6 leading-tight">
-            SOFTWARE THAT<br />DOESN'T SLEEP.
+            SOFTWARE THAT
+            <br />
+            DOESN'T SLEEP.
           </h2>
           <p className="font-body text-base sm:text-lg md:text-xl text-ink/70 max-w-2xl mx-auto leading-relaxed">
-            From concept to deployed � we build production-grade software, automation & AI products for founders who move fast.
+            From concept to deployed — we build production-grade software, automation & AI products for founders who move fast.
           </p>
         </div>
 
