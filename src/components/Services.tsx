@@ -92,75 +92,18 @@ function AutomationVisual() {
 }
 
 function CustomSoftwareVisual() {
-  const rows = [
-    ["#4021", "Mysha Creation", "Shipped", "128"],
-    ["#4020", "Surprizo", "In transit", "86"],
-    ["#4019", "Onestore", "Processing", "204"],
-  ];
   return (
-    <div className="flex h-full flex-col bg-[#0e1520]">
-      <ChromeBar label="app.oh-my-dev.io/dashboard" />
-      <div className="flex flex-1 overflow-hidden">
-        <div className="hidden w-11 flex-col items-center gap-4 border-r border-white/10 bg-black/20 py-4 sm:flex">
-          {[Home, LayoutGrid, Users, Settings].map((Icon, i) => (
-            <Icon
-              key={i}
-              className={`size-4 ${i === 1 ? "text-brand" : "text-white/30"}`}
-            />
-          ))}
-        </div>
-        <div className="flex-1 space-y-3 p-4">
-          <div className="flex items-center justify-between">
-            <span className="font-heading text-sm font-bold text-white">
-              Orders
-            </span>
-            <Search className="size-3.5 text-white/30" />
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            {[
-              ["128", "Orders"],
-              ["42", "Stock"],
-              ["9.4k", "Revenue"],
-            ].map(([v, l]) => (
-              <div
-                key={l}
-                className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-2"
-              >
-                <p className="font-heading text-base leading-none font-extrabold text-white">
-                  {v}
-                </p>
-                <p className="mt-1 font-mono text-[8px] font-bold text-white/40 uppercase">
-                  {l}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="flex h-16 items-end gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-2.5">
-            {[35, 55, 40, 70, 50, 85, 60, 45].map((h, i) => (
-              <span
-                key={i}
-                className="w-full rounded-sm bg-brand/80"
-                style={{ height: `${h}%` }}
-              />
-            ))}
-          </div>
-          <div className="hidden overflow-hidden rounded-lg border border-white/10 sm:block">
-            {rows.map((r, i) => (
-              <div
-                key={r[0]}
-                className={`flex items-center justify-between px-3 py-1.5 text-[10px] text-white/60 ${i % 2 ? "bg-white/[0.03]" : ""}`}
-              >
-                <span className="font-mono text-white/40">{r[0]}</span>
-                <span className="flex-1 truncate px-2 text-white/80">
-                  {r[1]}
-                </span>
-                <span className="text-white/40">{r[2]}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <Caption text="internal ops dashboard · built around your workflow" />
+    <div className="flex h-full flex-col bg-black">
+      <ChromeBar label="Custom Software · Built to fit" />
+      <video
+        src="/a_Custom_Software_Buil.mp4"
+        className="flex-1 object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      <Caption text="built around your workflow · production ready" />
     </div>
   );
 }
@@ -184,117 +127,32 @@ function WebAppVisual() {
 
 function MobileAppVisual() {
   return (
-    <div className="flex h-full items-center justify-center gap-6 bg-gradient-to-br from-[#eef4fb] to-[#dcebf7] py-4">
-      <div className="flex h-[92%] w-[150px] flex-col overflow-hidden rounded-[1.4rem] border-[5px] border-ink bg-white shadow-2xl">
-        <div className="flex items-center justify-between bg-ink px-3 py-1.5">
-          <span className="font-mono text-[7px] font-bold text-white/70">
-            9:41
-          </span>
-          <span className="h-1.5 w-8 rounded-full bg-white/30" />
-        </div>
-        <div className="flex items-center justify-between px-3 pt-2.5">
-          <span className="font-heading text-[11px] font-extrabold text-ink">
-            Orders
-          </span>
-          <Bell className="size-3 text-ink-faint" />
-        </div>
-        <div className="mx-3 mt-2 rounded-lg bg-gradient-to-r from-brand to-brand-deep px-2.5 py-2">
-          <p className="font-mono text-[7px] font-bold text-white/80 uppercase">
-            This week
-          </p>
-          <p className="font-heading text-base leading-none font-extrabold text-white">
-            ₹42,180
-          </p>
-        </div>
-        <div className="mt-2 flex-1 space-y-1.5 px-3">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="flex items-center gap-1.5 rounded-md border border-ink/10 p-1.5"
-            >
-              <span className="size-4 shrink-0 rounded-full bg-tool/20" />
-              <span className="h-1.5 flex-1 rounded-full bg-ink/10" />
-              <span className="h-1.5 w-4 rounded-full bg-brand/50" />
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-around border-t border-ink/10 py-2">
-          {[Home, LayoutGrid, Users, Settings].map((Icon, i) => (
-            <Icon
-              key={i}
-              className={`size-3 ${i === 0 ? "text-brand" : "text-ink-faint/50"}`}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="hidden flex-col gap-2 sm:flex">
-        <span className="rounded-full border border-ink/10 bg-white px-3 py-1.5 font-mono text-[9px] font-semibold text-ink-soft shadow-sm">
-          📱 iOS + Android
-        </span>
-        <span className="rounded-full border border-ink/10 bg-white px-3 py-1.5 font-mono text-[9px] font-semibold text-ink-soft shadow-sm">
-          🔄 Real-time sync
-        </span>
-        <span className="rounded-full border border-ink/10 bg-white px-3 py-1.5 font-mono text-[9px] font-semibold text-ink-soft shadow-sm">
-          📶 Works offline
-        </span>
-      </div>
+    <div className="flex h-full items-center justify-center bg-black">
+      <video
+        src="/WhatsApp Video 2026-08-26 at 1.59.01 PM.mp4"
+        className="h-full w-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
     </div>
   );
 }
 
 function ChatbotVisual() {
   return (
-    <div className="flex h-full flex-col bg-[#f3f6fb]">
-      <div className="flex items-center gap-2.5 border-b border-ink/10 bg-white px-4 py-3">
-        <span className="flex size-8 items-center justify-center rounded-full bg-brand">
-          <Bot className="size-4 text-white" />
-        </span>
-        <div>
-          <p className="font-heading text-xs font-bold text-ink">
-            OH MY DEV Assistant
-          </p>
-          <p className="flex items-center gap-1 font-mono text-[9px] text-emerald-600">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
-            online now
-          </p>
-        </div>
-      </div>
-      <div className="flex-1 space-y-2.5 overflow-hidden px-4 py-4">
-        <div className="flex justify-start">
-          <span className="max-w-[75%] rounded-xl rounded-bl-sm bg-white px-3 py-2 text-[11px] leading-snug text-ink shadow-sm">
-            Hey! What are your hours this week?
-          </span>
-        </div>
-        <div className="flex justify-end">
-          <span className="max-w-[75%] rounded-xl rounded-br-sm bg-brand px-3 py-2 text-[11px] leading-snug text-white shadow-sm">
-            We&apos;re open 9–6 IST, every day 👋 want to book a slot?
-          </span>
-        </div>
-        <div className="flex justify-start">
-          <span className="max-w-[75%] rounded-xl rounded-bl-sm bg-white px-3 py-2 text-[11px] leading-snug text-ink shadow-sm">
-            Yes please, Thursday afternoon
-          </span>
-        </div>
-        <div className="flex justify-start">
-          <span className="flex items-center gap-1 rounded-xl rounded-bl-sm bg-white px-3 py-2 shadow-sm">
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                className="size-1 animate-pulse rounded-full bg-ink-faint"
-                style={{ animationDelay: `${i * 0.15}s` }}
-              />
-            ))}
-          </span>
-        </div>
-      </div>
-      <div className="flex items-center gap-2 border-t border-ink/10 bg-white px-3 py-2.5">
-        <span className="flex-1 rounded-full bg-soft px-3 py-1.5 font-mono text-[10px] text-ink-faint">
-          Type a message…
-        </span>
-        <span className="flex size-7 items-center justify-center rounded-full bg-brand">
-          <Send className="size-3.5 text-white" />
-        </span>
-      </div>
+    <div className="flex h-full flex-col bg-black">
+      <ChromeBar label="chatbot.oh-my-dev.io" />
+      <video
+        src="/veo-3.1-audio-1080p_a_generate_a_video_AI_.mp4"
+        className="flex-1 object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      <Caption text="rag powered · business context aware · 24/7 available" />
     </div>
   );
 }

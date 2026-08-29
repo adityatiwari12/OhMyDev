@@ -10,21 +10,20 @@ export function ImageBreak() {
               <span className="size-2.5 rounded-full bg-green-400/70" />
             </div>
             <span className="font-mono text-[11px] text-white/40">
-              architecture.tsx — oh-my-dev
+              app.oh-my-dev.io/dashboard
             </span>
             <span className="w-12" />
           </div>
-          <pre className="overflow-x-auto px-6 py-8 font-mono text-[12px] leading-relaxed text-white/70 sm:text-sm">
-            <code>{`export const stack = {
-  frontend: ["Next.js", "React", "TypeScript"],
-  backend: ["FastAPI", "Node.js", "PostgreSQL"],
-  ai: ["Claude", "LangChain", "RAG"],
-  infra: ["AWS", "Docker", "Vercel"],
-};
-
-// ten engineers. zero handoffs. shipped in prod.
-deploy(stack).then(() => console.log("done ✓"));`}</code>
-          </pre>
+          <video
+            className="w-full bg-black"
+            controls
+            autoPlay
+            muted
+            loop
+          >
+            <source src="/a_Custom_Software_Buil.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </section>

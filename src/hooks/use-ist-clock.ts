@@ -32,10 +32,14 @@ function getServerSnapshot() {
   return "--:--:-- --|12";
 }
 
+function getClientSnapshot() {
+  return formatSnapshot();
+}
+
 export function useISTClock() {
   const snapshot = useSyncExternalStore(
     subscribe,
-    formatSnapshot,
+    getClientSnapshot,
     getServerSnapshot,
   );
 
