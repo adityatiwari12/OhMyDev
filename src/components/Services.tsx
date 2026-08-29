@@ -63,10 +63,14 @@ function AutomationVisual() {
             <div key={s.label} className="flex items-center flex-1 min-w-0">
               <div className="flex flex-col items-center gap-1 sm:gap-2 w-full">
                 <span
-                  className={lex size-9 sm:size-12 items-center justify-center rounded-lg sm:rounded-xl shadow-lg shrink-0 }
+                  className={`flex size-9 sm:size-12 items-center justify-center rounded-lg sm:rounded-xl shadow-lg shrink-0 ${
+                    i === 2
+                      ? "bg-brand"
+                      : "border border-white/10 bg-white/10 backdrop-blur"
+                  }`}
                 >
                   <s.icon
-                    className={size-4 sm:size-5 }
+                    className={`size-4 sm:size-5 ${i === 2 ? "text-white" : "text-white/70"}`}
                   />
                 </span>
                 <span className="font-mono text-[7px] sm:text-[9px] font-semibold text-white/50 uppercase text-center leading-tight">
@@ -206,7 +210,7 @@ function ApiIntegrationsVisual() {
         {nodes.map((n) => (
           <span
             key={n.label}
-            className={bsolute  flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1 sm:px-2.5 sm:py-1.5 text-[7px] sm:text-[9px] font-bold text-white shadow-lg backdrop-blur}
+            className={`absolute ${n.pos} flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1 sm:px-2.5 sm:py-1.5 text-[7px] sm:text-[9px] font-bold text-white shadow-lg backdrop-blur`}
           >
             <span
               className="size-1.5 sm:size-2 rounded-full"
@@ -341,7 +345,7 @@ function ScrollPan() {
           Math.max(-rect.top / scrollDistance(), 0),
           1,
         );
-        trackRef.current.style.transform = \	ranslate3d(\px,0,0)\;
+        trackRef.current.style.transform = `translate3d(${-progress * maxTranslate}px,0,0)`;
         setActiveIndex(
           Math.min(
             SERVICES.length - 1,
@@ -387,7 +391,7 @@ function ScrollPan() {
         {SERVICES.map((s, i) => (
           <span
             key={s.slug}
-            className={h-1 sm:h-1.5 rounded-full transition-all }
+            className={`h-1 sm:h-1.5 rounded-full transition-all ${i === active ? "w-4 sm:w-6 bg-brand" : "w-1 sm:w-1.5 bg-ink/15"}`}
           />
         ))}
       </div>
