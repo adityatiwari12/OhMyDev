@@ -170,7 +170,7 @@ export const WORK_ITEMS: WorkItem[] = [
       "Rideable bike-share bicycle (FiveM asset package). Full custom-built GTA V bicycle with front basket, chain guard, rear ID plate with QR code, and rental control panel. Procedurally generated from pure Python + NumPy with organized, client-editable livery texture.",
     tags: ["GAMEDEV", "FIVEM", "3D MODELING"],
     year: "2026",
-    video: "/ls-cycle-demo.mp4",
+    video: "/Screen Recording 2026-08-14 120427.mp4",
   },
   {
     index: "/07",
