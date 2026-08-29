@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { useMemo, useSyncExternalStore } from "react";
+import { useCallback, useMemo, useSyncExternalStore } from "react";
 
 function formatSnapshot() {
   const date = new Date();
@@ -32,11 +32,11 @@ function getServerSnapshot() {
   return "--:--:-- --|12";
 }
 
-function getClientSnapshot() {
-  return formatSnapshot();
-}
-
 export function useISTClock() {
+  const getClientSnapshot = useCallback(() => {
+    return formatSnapshot();
+  }, []);
+
   const snapshot = useSyncExternalStore(
     subscribe,
     getClientSnapshot,
